@@ -1,4 +1,6 @@
 <?php
+    //set current date 
+    $date = date('m/d/y');
     // get the data from the form
     $investment = filter_input(INPUT_POST, 'investment',
         FILTER_VALIDATE_FLOAT);
@@ -16,7 +18,9 @@
     } else if ( $interest_rate === FALSE )  {
         $error_message = 'Interest rate must be a valid number.'; 
     } else if ( $interest_rate <= 0 ) {
-        $error_message = 'Interest rate must be greater than zero.'; 
+        $error_message = 'Interest rate must be greater than zero.';
+    } else if ( $interest_rate > 15 ) {
+        $error_message = 'Interest rate must be less than or equal to 15.';
     // validate years
     } else if ( $years === FALSE ) {
         $error_message = 'Years must be a valid whole number.';
@@ -68,5 +72,7 @@
         <label>Future Value:</label>
         <span><?php echo $future_value_f; ?></span><br>
     </main>
+	<h5>This calculation was done on  <?php echo $date; ?><h5>
+	
 </body>
 </html>
